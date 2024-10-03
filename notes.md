@@ -1,18 +1,19 @@
 <h1>Poznamky NextJS na Ubuntu</h1>
 
-ls – zobrazenie directories
+<b>ls</b> – zobrazenie directories
 
-cd ~/Dokumenty/dev – zmenenie directory z root na Dokumenty/dev
+<b>cd ~/Dokumenty/dev</b> – zmenenie directory z root na Dokumenty/dev
 
-npx create-next-app@latest – vytvorenie NextJS aplikacie na najnovsiu verziu
+<b>npx create-next-app@latest</b> – vytvorenie NextJS aplikacie na najnovsiu verziu
 
-npm run dev – spustit stranku
+<b>npm run dev</b> – spustit stranku
 
-npm install @mui/material @emotion/react @emotion/styled – instalacia material ui do node projektu
+<b>npm install @mui/material @emotion/react @emotion/styled</b> – instalacia material ui do node projektu
 
-npm install @fontsource/roboto – instalacia roboto fontu
+<b>npm install @fontsource/roboto</b> – instalacia roboto fontu
 
-import Typography from '@mui/material/Typography'; - importovanie tagu Typography (nahradza paragraph/<p>)
+
+<h2>19.09.2024</h2>
 
 
 ![alt text](image.png)
