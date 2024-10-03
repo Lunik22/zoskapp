@@ -1,4 +1,4 @@
-<b>Poznamky NextJS na Ubuntu</b>
+<h1>Poznamky NextJS na Ubuntu</h1>
 
 ls – zobrazenie directories
 
@@ -14,9 +14,5 @@ npm install @fontsource/roboto – instalacia roboto fontu
 
 import Typography from '@mui/material/Typography'; - importovanie tagu Typography (nahradza paragraph/<p>)
 
-Struktura <Typography> tagu: 
-<Typography variant="h4" >
-	h4. Heading
-</Typography>
 
 ![alt text](image.png)
