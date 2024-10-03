@@ -11,7 +11,7 @@ import * as React from 'react';
 
 const navItems = [
   { label: 'Home', icon: <HomeIcon />, path: '/' },
-  { label: 'Pouzivatelia', icon: <PeopleIcon />, path: '/profil' },
+  { label: 'Profil', icon: <PeopleIcon />, path: '/profil' },
   { label: 'Prispevok', icon: <PostAddIcon />, path: '/prispevok' },
   { label: 'Prihlásenie', icon: <LoginIcon />, path: '/auth/prihlasenie' },
   { label: 'Registrácia', icon: <PersonAddIcon />, path: '/auth/registracia' },
