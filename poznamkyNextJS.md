@@ -17,13 +17,6 @@ material ui do node projektu
 *import Typography from \'@mui/material/Typography\'; - importovanie
 tagu Typography (nahradza paragraph/\<p\>)*
 
-*Struktura \<Typography\> tagu: *
-
-\<Typography variant=\"h4\" \>
-
-h4. Heading
-
-\</Typography\>
 
 19.09.2024
 
