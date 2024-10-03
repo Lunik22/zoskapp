@@ -1,6 +1,6 @@
 Poznamky NextJS na Ubuntu
 
-**ls **-- zobrazenie directories
+<b>ls </b>-- zobrazenie directories
 
 **cd \~/Dokumenty/dev **-- zmenenie directory z root na Dokumenty/dev
 
