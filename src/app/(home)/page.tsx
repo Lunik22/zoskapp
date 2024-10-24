@@ -11,10 +11,10 @@ export const metadata: Metadata = {
 };
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);;
+  const session = await getServerSession(authOptions);
 
   if (session) {
-    return <AuthHome user={session.user} />;
+    return <AuthHome session={session} />;
   }
 
   return <UnauthHome />;
