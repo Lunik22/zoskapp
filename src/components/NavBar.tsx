@@ -11,15 +11,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import LogoutIcon from '@mui/icons-material/Logout';
 import { useRouter } from 'next/navigation';
-import { useSession, signOut } from "next-auth/react"; // Import signOut
-
-// Define type with optional onClick
-interface NavItem {
-  label: string;
-  value: string;
-  icon: React.ReactNode;
-  onClick?: () => void; // Optional onClick
-}
+import { useSession } from "next-auth/react";
 
 export default function Navbar() {
   const [value, setValue] = React.useState('/');
@@ -28,13 +20,11 @@ export default function Navbar() {
 
   const handleNavigation = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
-    if (newValue !== "/signout") {
-      router.push(newValue);
-    }
+    router.push(newValue);
   };
 
   // Non-authenticated navigation paths
-  const nonAuthPaths: NavItem[] = [
+  const nonAuthPaths = [
     { label: "Domov", value: "/", icon: <HomeIcon /> },
     { label: "Prispevky", value: "/prispevok", icon: <AddCircleIcon /> },
     { label: "Registrácia", value: "/auth/registracia", icon: <AppRegistrationIcon /> },
@@ -42,7 +32,7 @@ export default function Navbar() {
   ];
 
   // Authenticated navigation paths
-  const authPaths: NavItem[] = [
+  const authPaths = [
     { label: "Domov", value: "/", icon: <HomeIcon /> },
     { label: "Hľadať", value: "/hladanie", icon: <SearchIcon /> },
     { label: "Pridať", value: "/pridat", icon: <AddCircleIcon /> },
@@ -58,12 +48,7 @@ export default function Navbar() {
         <Avatar>{session?.user?.name?.charAt(0) || "U"}</Avatar>
       )
     },
-    { 
-      label: "Odhlásiť", 
-      value: "/",
-      icon: <LogoutIcon />, 
-      onClick: () => signOut({ callbackUrl: '/' }) 
-    },
+    { label: "Odhlásiť", value: "/auth/odhlasenie", icon: <LogoutIcon /> },
   ];
 
   // Decide which paths to use based on authentication status
@@ -82,7 +67,6 @@ export default function Navbar() {
             label={path.label}
             value={path.value}
             icon={path.icon}
-            onClick={path.onClick ? path.onClick : undefined} // Attach onClick only if defined
           />
         ))}
       </BottomNavigation>

@@ -1,20 +1,12 @@
 // src/app/auth/odhlasenie/page.tsx
 
-"use client";
+import { Metadata } from 'next';
+import SignOut from '../../../sections/SignOutView';
 
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
+export const metadata: Metadata = {
+  title: `Odhlásenie | Zoškapp`,
+};
 
-
-export default function Prihlasenie() {
-  return (
-    <Box textAlign="center" mt={5}>
-      <Typography variant="h4" gutterBottom>
-        Odhlasenie
-      </Typography>
-    </Box>
-  );
+export default function Odhlasenie() {
+  return <SignOut/>;
 }
-
-
-

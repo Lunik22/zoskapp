@@ -1,11 +1,6 @@
 // src/app/(home)/UnauthHome.tsx
 
 import Typography from '@mui/material/Typography';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: `Domov | Zoškapp`,
-};
 
 export default function UnauthHome() {
 

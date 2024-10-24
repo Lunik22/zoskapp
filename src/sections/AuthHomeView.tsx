@@ -1,11 +1,6 @@
 // src/app/(home)/AuthHome.tsx
 
 import Typography from '@mui/material/Typography';
-import { Metadata } from 'next';
-
-export const metadata: Metadata = {
-  title: `Domov | Zoškapp`,
-};
 
 export default function AuthHome({ user }: { user: {
     name?: string | null | undefined;
