@@ -2,6 +2,8 @@
 
 import { NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import { prisma } from "./prisma"
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -21,4 +23,5 @@ export const authOptions: NextAuthOptions = {
       return baseUrl || url; // baseUrl is automatically set from NEXTAUTH_URL in .env
     },
   },
+  adapter: PrismaAdapter(prisma),
 };
