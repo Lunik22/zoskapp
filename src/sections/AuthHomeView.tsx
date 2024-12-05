@@ -7,7 +7,7 @@ export default function AuthHome({ session }: { session: Session }) {
 
   return (
     <div>
-        <Typography variant="h2">Vitaj, {session.user?.name}!</Typography>
+        <Typography variant="h1">Vitaj, {session.user?.name}!</Typography>
         <Typography variant="h4">
           Domovská stránka - Prihlásený user
         </Typography>

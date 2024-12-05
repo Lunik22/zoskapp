@@ -2,18 +2,26 @@
 
 "use client";
 
-import * as React from 'react';
-import { BottomNavigation, BottomNavigationAction, Box, Avatar } from '@mui/material';
-import HomeIcon from '@mui/icons-material/Home';
-import AppsIcon from '@mui/icons-material/Apps';
-import AddCircleIcon from '@mui/icons-material/AddCircle';
-import LoginIcon from '@mui/icons-material/Login';
-import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
-import LogoutIcon from '@mui/icons-material/Logout';
-import { useRouter } from 'next/navigation';
+import * as React from "react";
+import { BottomNavigation, BottomNavigationAction, Box, Avatar, useTheme, Theme } from "@mui/material";
+import HomeIcon from "@mui/icons-material/Home";
+import AppsIcon from "@mui/icons-material/Apps";
+import AddCircleIcon from "@mui/icons-material/AddCircle";
+import LoginIcon from "@mui/icons-material/Login";
+import AppRegistrationIcon from "@mui/icons-material/AppRegistration";
+import LogoutIcon from "@mui/icons-material/Logout";
+import LightModeIcon from "@mui/icons-material/LightMode";
+import DarkModeIcon from "@mui/icons-material/DarkMode";
+import InfoIcon from '@mui/icons-material/Info';
+import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
-export default function Navbar() {
+interface NavbarProps {
+  toggleTheme: () => void;
+  currentTheme: Theme;
+}
+
+export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
   const [value, setValue] = React.useState('/');
   const router = useRouter();
   const { data: session, status } = useSession();
@@ -23,10 +31,12 @@ export default function Navbar() {
     router.push(newValue);
   };
 
+  const theme = useTheme();
+
   // Non-authenticated navigation paths
   const nonAuthPaths = [
     { label: "Domov", value: "/", icon: <HomeIcon /> },
-    { label: "Prispevky", value: "/prispevky", icon: <AddCircleIcon /> },
+    { label: "O nás", value: "/o-nas", icon: <InfoIcon /> },
     { label: "Registrácia", value: "/auth/registracia", icon: <AppRegistrationIcon /> },
     { label: "Prihlásenie", value: "/auth/prihlasenie", icon: <LoginIcon /> }
   ];
@@ -37,7 +47,6 @@ export default function Navbar() {
     { label: "Príspevky", value: "/prispevky", icon: <AppsIcon /> },
     { label: "Pridať", value: "/pridat", icon: <AddCircleIcon /> },
     {
-      label: "Profil",
       value: "/profil",
       icon: session?.user?.image ? (
         <Avatar 
@@ -55,21 +64,47 @@ export default function Navbar() {
   const navigationPaths = status === "authenticated" ? authPaths : nonAuthPaths;
 
   return (
-    <Box sx={{ width: '100%', position: 'fixed', bottom: 0 }}>
-      <BottomNavigation
-        showLabels
-        value={value}
-        onChange={handleNavigation}
-      >
-        {navigationPaths.map((path) => (
+    <Box sx={{
+      width: '100%',
+      position: 'fixed',
+      bottom: 0,
+      marginBottom: "1rem",
+      left: 0, // Align with the left of the viewport
+      right: 0, // Align with the right of the viewport
+      display: 'flex',
+      justifyContent: 'center',
+      paddingX: 2,
+    }}>
+      <Box sx={{
+        width: '100%',
+        maxWidth: 1200,
+        margin: '0 auto',
+        paddingX: 2,
+      }}>
+        <BottomNavigation
+          showLabels
+          value={value}
+          onChange={handleNavigation}
+          sx={{ paddingY: '2rem', borderRadius: '25px'}}
+        >
+          {navigationPaths.map((path) => (
+            <BottomNavigationAction
+              key={path.value}
+              label={path.label}
+              value={path.value}
+              icon={path.icon}
+            />
+          ))}
+          
+          {/* Add the theme toggle action as a BottomNavigationAction */}
           <BottomNavigationAction
-            key={path.value}
-            label={path.label}
-            value={path.value}
-            icon={path.icon}
+            label=""
+            value=""
+            icon={currentTheme.palette.mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
+            onClick={toggleTheme}
           />
-        ))}
-      </BottomNavigation>
+        </BottomNavigation>
+      </Box>
     </Box>
   );
 }
