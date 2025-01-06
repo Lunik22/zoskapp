@@ -18,6 +18,16 @@ export default async function Home() {
     return(
       <Stack spacing={2}>
         <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
+        <AuthHome session={session} />
       </Stack>
     );
   }

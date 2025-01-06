@@ -33,9 +33,21 @@ export const darkTheme = createTheme({
     },
     typography: {
         fontFamily: outfit.style.fontFamily,
-        h1:{
-            fontWeight: 700,
+        h1: {
+            fontWeight: 900,
             fontSize: '3rem'
+        },
+        h2: {
+            fontWeight: 700,
+            fontSize: '2rem'
+        },
+        h3: {
+            fontWeight: 500,
+            fontSize: '1.5rem'
+        },
+        h4: {   
+            fontWeight: 500,
+            fontSize: '1.25rem'
         }
     }
 })
@@ -64,8 +76,21 @@ export const lightTheme = createTheme({
     typography: {
         fontFamily: outfit.style.fontFamily,
         h1: {
-            fontWeight: 700,
+            fontWeight: 900,
             fontSize: '3rem'
+        },
+        h2: {
+            fontWeight: 700,
+            fontSize: '2rem'
+        },
+        h3: {
+            fontWeight: 500,
+            fontSize: '1.5rem'
+        },
+        h4: {   
+            fontWeight: 500,
+            fontSize: '1.25rem'
         }
+        
     }
 })

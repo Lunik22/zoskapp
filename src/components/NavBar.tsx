@@ -21,10 +21,21 @@ interface NavbarProps {
   currentTheme: Theme;
 }
 
+function hexToRgb(hex: string) {
+  hex = hex.replace('#', '');
+  const bigint = parseInt(hex, 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `${r}, ${g}, ${b}`;
+}
+
 export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
   const [value, setValue] = React.useState('/');
   const router = useRouter();
   const { data: session, status } = useSession();
+
+  
 
   const handleNavigation = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
@@ -63,17 +74,20 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
   // Decide which paths to use based on authentication status
   const navigationPaths = status === "authenticated" ? authPaths : nonAuthPaths;
 
+  const navBarBackColorRgb = hexToRgb(theme.palette.background.paper);
+
   return (
     <Box sx={{
       width: '100%',
       position: 'fixed',
       bottom: 0,
       marginBottom: "1rem",
-      left: 0, // Align with the left of the viewport
-      right: 0, // Align with the right of the viewport
+      left: 0,
+      right: 0,
       display: 'flex',
       justifyContent: 'center',
       paddingX: 2,
+   
     }}>
       <Box sx={{
         width: '100%',
@@ -85,7 +99,13 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
           showLabels
           value={value}
           onChange={handleNavigation}
-          sx={{ paddingY: '2rem', borderRadius: '25px'}}
+          sx={{ 
+            paddingY: '2rem', 
+            borderRadius: '25px',
+            backdropFilter: 'blur(10px)',
+            backgroundColor: `rgba(${navBarBackColorRgb}, 0.7)`,
+            boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
+          }}
         >
           {navigationPaths.map((path) => (
             <BottomNavigationAction
@@ -93,6 +113,11 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
               label={path.label}
               value={path.value}
               icon={path.icon}
+              sx={{
+                '&:hover': {
+                  color: theme.palette.primary.main,
+                }
+              }}
             />
           ))}
           
@@ -102,6 +127,11 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
             value=""
             icon={currentTheme.palette.mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
             onClick={toggleTheme}
+            sx={{
+              '&:hover': {
+                color: theme.palette.primary.main,
+              }
+            }}
           />
         </BottomNavigation>
       </Box>
