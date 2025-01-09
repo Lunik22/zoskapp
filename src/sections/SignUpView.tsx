@@ -2,12 +2,14 @@
 
 "use client";
 
-import { Box, Button, Card, Checkbox, FormControlLabel, Link, TextField, useTheme } from '@mui/material';
+import { AlertProps, Box, Button, Card, Checkbox, FormControlLabel, Link, Snackbar, TextField, useTheme } from '@mui/material';
+import MuiAlert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import { signIn } from 'next-auth/react';
 import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import { useState } from 'react';
+import React from 'react';
 
 function hexToRgb(hex: string) {
   hex = hex.replace('#', '');
@@ -18,8 +20,34 @@ function hexToRgb(hex: string) {
   return `${r}, ${g}, ${b}`;
 }
 
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(props, ref) {
+  return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
 export default function SignIn() {
   const theme = useTheme();
+  const [isChecked, setIsChecked] = useState(false);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setIsChecked(event.target.checked);
+  };
+
+  const handleButtonClick = () => {
+    if (!isChecked) {
+      setSnackbarOpen(true);
+    } else {
+      // Handle button click logic here
+    }
+  };
+
+  const handleSnackbarClose = (event?: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+    setSnackbarOpen(false);
+  };
 
   const backgroundColorRgb = hexToRgb(theme.palette.background.paper);
 
@@ -84,8 +112,8 @@ export default function SignIn() {
           }}
         />
         <FormControlLabel
-          control={<Checkbox />}
-          label="Súhlasím s podmienkami používania"
+          control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
+          label={<span>Súhlasím s <Link href="/gdpr">GDPR</Link> a <Link href="/podmienky">obchodnými podmienkami</Link></span>}
           sx={{
             mt: 1,
             color: theme.palette.text.secondary,
@@ -94,81 +122,69 @@ export default function SignIn() {
             },
           }}
         />
-        <Button
-          variant="contained"
-          color="primary"
-          sx={{ 
-            mt: 2,
-            mb: 2,
-            width: '100%',
-            borderRadius: '25px'
-           }} 
-        >
-          Registrovať
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => signIn('google')}
-          sx={{ 
-            mt: 2,
-            width: '100%',
-            borderRadius: '25px',
-            backgroundColor: '#4285F4',
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#357ae8',
-            },
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }} 
-        >
-          <GoogleIcon sx={{ mr: 1 }} />
-          Registrovať sa s Google
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => signIn('facebook')}
-          sx={{ 
-            mt: 2,
-            width: '100%',
-            borderRadius: '25px',
-            backgroundColor: '#3b5998',
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#2d4373', 
-            },
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }} 
-        >
-          <FacebookIcon sx={{ mr: 1 }} />
-          Registrovať sa s Facebook
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={() => signIn('github')}
-          sx={{ 
-            mt: 2,
-            width: '100%',
-            borderRadius: '25px',
-            backgroundColor: '#333', 
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#24292e', 
-            },
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }} 
-        >
-          <GitHubIcon sx={{ mr: 1 }} />
-          Registrovať sa s GitHub
-        </Button>
+        <div onClick={handleButtonClick} style={{ width: '100%' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={!isChecked}
+            sx={{ 
+              mt: 2,
+              mb: 2,
+              width: '100%',
+              borderRadius: '25px'
+             }} 
+          >
+            Registrovať
+          </Button>
+        </div>
+        <div onClick={handleButtonClick} style={{ width: '100%' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={!isChecked}
+            onClick={() => signIn('google')}
+            sx={{ 
+              mt: 2,
+              width: '100%',
+              borderRadius: '25px',
+              backgroundColor: '#4285F4',
+              color: '#fff',
+              '&:hover': {
+                backgroundColor: theme.palette.primary.dark,
+              },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }} 
+          >
+            <GoogleIcon sx={{ mr: 1 }} />
+            Registrovať sa s Google
+          </Button>
+        </div>
+        <div onClick={handleButtonClick} style={{ width: '100%' }}>
+          <Button
+            variant="contained"
+            color="primary"
+            disabled={!isChecked}
+            onClick={() => signIn('github')}
+            sx={{ 
+              mt: 2,
+              width: '100%',
+              borderRadius: '25px',
+              backgroundColor: '#333', 
+              color: '#fff',
+              '&:hover': {
+                backgroundColor: theme.palette.primary.dark, 
+              },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }} 
+          >
+            <GitHubIcon sx={{ mr: 1 }} />
+            Registrovať sa s GitHub
+          </Button>
+        </div>
         <Link href="/auth/prihlasenie" sx={{
           mt: 3,
           textDecoration: 'none',
@@ -180,6 +196,11 @@ export default function SignIn() {
         }}>
           Máte už účet? Prihláste sa!
         </Link>
+        <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+          <Alert onClose={handleSnackbarClose} severity="error">
+            Na prihlásenie prosím súhlaste s <Link href="/gdpr">GDPR</Link> a <Link href="/podmienky">obchodnými podmienkami!</Link>
+          </Alert>
+        </Snackbar>
       </Card>
     </Box>
   );

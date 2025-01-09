@@ -1,14 +1,10 @@
 // src/app/gdpr/page.tsx
 
-import Typography from '@mui/material/Typography';
+import GdprView from '@/sections/GdprView';
 
 export const metadata = { title: `Ochrana osobnych udajov GDPR | ZoškApp` };
 
 export default function Gdpr() {
 
-  return (
-
-    <Typography> Ochrana osobnych udajov GDPR </Typography>
-  
-  );
+  return <GdprView />;
 }

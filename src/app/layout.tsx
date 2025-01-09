@@ -7,7 +7,6 @@ import AuthProvider from "../components/AuthProvider";
 import { Container, CssBaseline, ThemeProvider } from "@mui/material";
 import { darkTheme, lightTheme } from './theme'
 import { useEffect, useState } from "react";
-import { Outfit } from 'next/font/google'
 
 
 export default function RootLayout({

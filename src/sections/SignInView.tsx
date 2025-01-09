@@ -6,7 +6,6 @@ import { Box, Button, Card, Link, TextField, useTheme } from '@mui/material';
 import Typography from '@mui/material/Typography';
 import { signIn } from 'next-auth/react';
 import GoogleIcon from '@mui/icons-material/Google';
-import FacebookIcon from '@mui/icons-material/Facebook';
 import GitHubIcon from '@mui/icons-material/GitHub';
 
 function hexToRgb(hex: string) {
@@ -107,7 +106,7 @@ export default function SignIn() {
             backgroundColor: '#4285F4',
             color: '#fff',
             '&:hover': {
-              backgroundColor: '#357ae8',
+              backgroundColor: theme.palette.primary.dark,
             },
             display: 'flex',
             alignItems: 'center',
@@ -120,27 +119,6 @@ export default function SignIn() {
         <Button
           variant="contained"
           color="primary"
-          onClick={() => signIn('facebook')}
-          sx={{ 
-            mt: 2,
-            width: '100%',
-            borderRadius: '25px',
-            backgroundColor: '#3b5998',
-            color: '#fff',
-            '&:hover': {
-              backgroundColor: '#2d4373', 
-            },
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }} 
-        >
-          <FacebookIcon sx={{ mr: 1 }} />
-          Prihlásiť sa s Facebook
-        </Button>
-        <Button
-          variant="contained"
-          color="primary"
           onClick={() => signIn('github')}
           sx={{ 
             mt: 2,
@@ -149,7 +127,7 @@ export default function SignIn() {
             backgroundColor: '#333', 
             color: '#fff',
             '&:hover': {
-              backgroundColor: '#24292e', 
+              backgroundColor: theme.palette.primary.dark,
             },
             display: 'flex',
             alignItems: 'center',
