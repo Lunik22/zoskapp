@@ -93,6 +93,11 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
         maxWidth: 1200,
         margin: '0 auto',
         paddingX: 2,
+        overflowX: 'auto', // Ensure the container is scrollable
+        scrollbarWidth: 'none', // For Firefox
+        '&::-webkit-scrollbar': {
+          display: 'none', // For Chrome, Safari, and Opera
+        },
       }}>
         <BottomNavigation
           showLabels
@@ -101,11 +106,12 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
           sx={{ 
             display: 'flex',
             paddingY: '2rem', 
+            minWidth: '100%',
             borderRadius: '25px',
             backdropFilter: 'blur(10px)',
             backgroundColor: `rgba(${navBarBackColorRgb}, 0.7)`,
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-            overflowX: 'scroll',
+            overflowX: 'auto',
             scrollbarWidth: 'none', // For Firefox
             '&::-webkit-scrollbar': {
               display: 'none', // For Chrome, Safari, and Opera
@@ -120,6 +126,7 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
               value={path.value}
               icon={path.icon}
               sx={{
+                flexShrink: 0,
                 '&:hover': {
                   color: theme.palette.primary.main,
                 }
@@ -134,6 +141,7 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
             icon={currentTheme.palette.mode === "light" ? <DarkModeIcon /> : <LightModeIcon />}
             onClick={toggleTheme}
             sx={{
+              flexShrink: 0,
               '&:hover': {
                 color: theme.palette.primary.main,
               }

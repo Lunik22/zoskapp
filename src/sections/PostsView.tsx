@@ -53,18 +53,18 @@ const PostsView = () => {
   }, []);
 
   return (
-    <Container sx={{ mt: "2rem", mb: "6rem", display: "flex", justifyContent: "center"}}>
-      <Stack spacing={2}>
+    <Container sx={{ mt: "2rem", mb: "6rem", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+      <Stack spacing={2} sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
         {posts.map((post) => (
-          <Card key={post.id} sx={{ display: "flex", flexDirection: "column", borderRadius: 10, width: "40rem", boxShadow: "none"}}>
-            <CardContent sx={{ display: "flex", alignItems: "center", marginX: "1rem"}}>
+          <Card key={post.id} sx={{ display: "flex", flexDirection: "column", borderRadius: 10, width: "60%", boxShadow: "none"}}>
+            <CardContent sx={{ display: "flex", alignItems: "center", marginX: "2.5%"}}>
               <CardMedia 
                 component="img"
                 image={post.user.image || "/default-avatar.jpg"}
                 alt={post.user.name || "Neznámy používateľS"}
-                sx={{ height: "2.5rem", width: "2.5rem", borderRadius: "50%" }}
+                sx={{ height: "7.5%", width: "7.5%", borderRadius: "50%" }}
               />
-              <Typography variant="h4" color="text.secondary" sx={{ marginLeft: "1rem"}}>
+              <Typography variant="h4" color="text.secondary" sx={{ marginLeft: "2.5%"}}>
                   {post.user.name || "Neznámy používateľ"}
               </Typography>
             </CardContent>
@@ -72,9 +72,9 @@ const PostsView = () => {
               component="img"
               image={post.imageUrl}
               alt={post.caption || "Príspevok bez popisu"}
-              sx={{ height: "30rem" , width: "40rem"}}
+              sx={{ height: "80%" , width: "100%"}}
             />
-            <CardContent sx={{ display: "flex", flexDirection: "column", marginX: "1rem"}}>
+            <CardContent sx={{ display: "flex", flexDirection: "column", marginX: "2.5%"}}>
               <Typography variant="body1">{post.caption || "Bez popisu"}</Typography>
               <Typography variant="body1">{formatDate(new Date(post.createdAt)) || "Bez datumu"}</Typography>
             </CardContent>
