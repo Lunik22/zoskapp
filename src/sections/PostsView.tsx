@@ -53,18 +53,18 @@ const PostsView = () => {
   }, []);
 
   return (
-    <Container sx={{ mt: 4, mb: 12, display: "flex", justifyContent: "center"}}>
+    <Container sx={{ mt: "2rem", mb: "6rem", display: "flex", justifyContent: "center"}}>
       <Stack spacing={2}>
         {posts.map((post) => (
-          <Card key={post.id} sx={{ display: "flex", flexDirection: "column", borderRadius: 10, width: 600, boxShadow: "none"}}>
-            <CardContent sx={{ display: "flex", alignItems: "center", marginX: 2}}>
+          <Card key={post.id} sx={{ display: "flex", flexDirection: "column", borderRadius: 10, width: "40rem", boxShadow: "none"}}>
+            <CardContent sx={{ display: "flex", alignItems: "center", marginX: "1rem"}}>
               <CardMedia 
                 component="img"
                 image={post.user.image || "/default-avatar.jpg"}
                 alt={post.user.name || "Neznámy používateľS"}
-                sx={{ height: 40, width: 40, borderRadius: "50%" }}
+                sx={{ height: "2.5rem", width: "2.5rem", borderRadius: "50%" }}
               />
-              <Typography variant="h4" color="text.secondary" sx={{ marginLeft: 2}}>
+              <Typography variant="h4" color="text.secondary" sx={{ marginLeft: "1rem"}}>
                   {post.user.name || "Neznámy používateľ"}
               </Typography>
             </CardContent>
@@ -72,9 +72,9 @@ const PostsView = () => {
               component="img"
               image={post.imageUrl}
               alt={post.caption || "Príspevok bez popisu"}
-              sx={{ height: 450 , width: 600}}
+              sx={{ height: "30rem" , width: "40rem"}}
             />
-            <CardContent sx={{ display: "flex", flexDirection: "column", marginX: 2}}>
+            <CardContent sx={{ display: "flex", flexDirection: "column", marginX: "1rem"}}>
               <Typography variant="body1">{post.caption || "Bez popisu"}</Typography>
               <Typography variant="body1">{formatDate(new Date(post.createdAt)) || "Bez datumu"}</Typography>
             </CardContent>
