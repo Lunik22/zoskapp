@@ -87,6 +87,7 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
       display: 'flex',
       justifyContent: 'center',
       paddingX: 2,
+   
     }}>
       <Box sx={{
         width: '100%',
@@ -99,18 +100,11 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
           value={value}
           onChange={handleNavigation}
           sx={{ 
-            display: 'flex',
             paddingY: '2rem', 
             borderRadius: '25px',
             backdropFilter: 'blur(10px)',
             backgroundColor: `rgba(${navBarBackColorRgb}, 0.7)`,
             boxShadow: '0 4px 30px rgba(0, 0, 0, 0.1)',
-            overflowX: 'scroll',
-            scrollbarWidth: 'none', // For Firefox
-            '&::-webkit-scrollbar': {
-              display: 'none', // For Chrome, Safari, and Opera
-            },
-            
           }}
         >
           {navigationPaths.map((path) => (
