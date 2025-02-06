@@ -2,7 +2,7 @@
 
 "use client";
 
-import { AlertProps, Box, Button, Card, Checkbox, FormControlLabel, Link, Snackbar, TextField, useTheme } from '@mui/material';
+import { AlertProps, Box, Button, Card, Checkbox, FormControlLabel, Link, Snackbar, useTheme } from '@mui/material';
 import MuiAlert from '@mui/material/Alert';
 import Typography from '@mui/material/Typography';
 import { signIn } from 'next-auth/react';
@@ -57,6 +57,7 @@ export default function SignIn() {
       justifyContent: 'center', 
       alignItems: 'center', 
       width: '100%',
+      pt: 5,
       height: '100vh'
     }}>
       <Card sx={{ 
@@ -75,45 +76,9 @@ export default function SignIn() {
         <Typography variant="h2" gutterBottom>
           Registrácia
         </Typography>
-        <TextField 
-          label="Používateľské meno" 
-          variant="outlined"
-          sx={{ 
-            mt: 2,
-            mb: 1,
-            width: '100%',
-            '& .MuiOutlinedInput-root': {
-              borderRadius: '25px',
-            },
-          }}  
-        />
-        <TextField 
-          label="Email" 
-          variant="outlined"
-          sx={{ 
-            mb: 1,
-            width: '100%',
-            '& .MuiOutlinedInput-root': {
-              borderRadius: '25px',
-            },
-          }}  
-        />
-        <TextField 
-          label="Heslo" 
-          type="password" 
-          variant="outlined" 
-          fullWidth 
-          sx={{
-            mb: 1,
-            width: '100%',
-            '& .MuiOutlinedInput-root': {
-              borderRadius: '25px',
-            },
-          }}
-        />
         <FormControlLabel
           control={<Checkbox checked={isChecked} onChange={handleCheckboxChange} />}
-          label={<span>Súhlasím s <Link href="/gdpr">GDPR</Link> a <Link href="/podmienky">obchodnými podmienkami</Link></span>}
+          label={<span>Súhlasím s <Link href="/gdpr">GDPR</Link> a <Link href="/podmienky">podmienkami používania</Link></span>}
           sx={{
             mt: 1,
             color: theme.palette.text.secondary,
@@ -126,23 +91,7 @@ export default function SignIn() {
           <Button
             variant="contained"
             color="primary"
-            disabled={!isChecked}
-            sx={{ 
-              mt: 2,
-              mb: 2,
-              width: '100%',
-              borderRadius: '25px'
-             }} 
-          >
-            Registrovať
-          </Button>
-        </div>
-        <div onClick={handleButtonClick} style={{ width: '100%' }}>
-          <Button
-            variant="contained"
-            color="primary"
-            disabled={!isChecked}
-            onClick={() => signIn('google')}
+            onClick={isChecked? () => signIn('google') : undefined}
             sx={{ 
               mt: 2,
               width: '100%',
@@ -165,8 +114,7 @@ export default function SignIn() {
           <Button
             variant="contained"
             color="primary"
-            disabled={!isChecked}
-            onClick={() => signIn('github')}
+            onClick={isChecked? () => signIn('google') : undefined}
             sx={{ 
               mt: 2,
               width: '100%',
@@ -205,3 +153,41 @@ export default function SignIn() {
     </Box>
   );
 }
+
+
+/*<TextField 
+          label="Používateľské meno" 
+          variant="outlined"
+          sx={{ 
+            mt: 2,
+            mb: 1,
+            width: '100%',
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '25px',
+            },
+          }}  
+        />
+        <TextField 
+          label="Email" 
+          variant="outlined"
+          sx={{ 
+            mb: 1,
+            width: '100%',
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '25px',
+            },
+          }}  
+        />
+        <TextField 
+          label="Heslo" 
+          type="password" 
+          variant="outlined" 
+          fullWidth 
+          sx={{
+            mb: 1,
+            width: '100%',
+            '& .MuiOutlinedInput-root': {
+              borderRadius: '25px',
+            },
+          }}
+        />*/

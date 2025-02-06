@@ -8,173 +8,76 @@ export default function GdprView() {
       display: 'flex',
       justifyContent: 'center',
       alignItems: 'center',
-      width: '100%'
+      flexDirection: 'column',
+      width: '100%',
+      pt: 12,
+      pb: 12,
+      px: 2,
     }}>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h3" gutterBottom sx={{ my: 2 }}>
         Vážený používateľ,
       </Typography>
-      <Typography paragraph>
+      <Typography variant="body1"  >
         Vaše súkromie a ochrana Vašich osobných údajov sú pre nás prioritou. Tento dokument opisuje, akými spôsobmi spracúvame, uchovávame a chránime Vaše osobné údaje v súhlase s Nariadením Európskeho parlamentu a Rady (EÚ) 2016/679 (GDPR).
       </Typography>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h4" gutterBottom sx={{ my: 2 }}>
         1. Prevádzkovateľ osobných údajov
       </Typography>
-      <Typography component="ul">
-        <li>
-          <Typography paragraph>
-            Názov spoločnosti: [Názov spoločnosti]
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Adresa: [Adresa spoločnosti]
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Kontaktné údaje: [Kontaktné údaje spoločnosti]
-          </Typography>
-        </li>
+      <Typography variant="body1"  >
+        Prevádzkovateľom osobných údajov je [Názov spoločnosti], so sídlom [Adresa spoločnosti], IČO: [IČO spoločnosti], zapísaná v obchodnom registri [Názov registra a číslo zápisu].
       </Typography>
-      <Typography variant="h6" gutterBottom>
+      <Typography variant="h4" gutterBottom sx={{ my: 2 }}>
         2. Účel spracovania osobných údajov
       </Typography>
-      <Typography paragraph>
-        Vaše osobné údaje spracúvame za účelom [účel spracovania].
+      <Typography variant="body1"  >
+        Vaše osobné údaje spracúvame za účelom poskytovania našich služieb, zlepšovania našich služieb, komunikácie s vami a plnenia našich zákonných povinností.
       </Typography>
-      <Typography variant="h6" gutterBottom>
-        3. Práva dotknutých osôb
+      <Typography variant="h4" gutterBottom sx={{ my: 2 }}>
+        3. Právny základ spracovania
       </Typography>
-      <Typography component="ul">
-        <li>
-          <Typography paragraph>
-            Právo na prístup k osobným údajom
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Právo na opravu osobných údajov
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Právo na vymazanie osobných údajov
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Právo na obmedzenie spracovania osobných údajov
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Právo na prenosnosť osobných údajov
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Právo namietať proti spracovaniu osobných údajov
-          </Typography>
-        </li>
+      <Typography variant="body1"  >
+        Spracovanie vašich osobných údajov je založené na vašom súhlase, plnení zmluvy, plnení našich zákonných povinností alebo na našom oprávnenom záujme.
       </Typography>
-      <Typography variant="h6" gutterBottom>
-        4. Kategórie osobných údajov
+      <Typography variant="h4" gutterBottom sx={{ my: 2 }}>
+        4. Práva dotknutých osôb
       </Typography>
       <Typography component="ul">
         <li>
-          <Typography paragraph>
-            Identifikačné údaje: meno, priezvisko, používateľské meno.
+          <Typography variant="body1"  >
+            Právo na prístup k osobným údajom – máte právo získať potvrdenie o tom, či spracúvame vaše osobné údaje, a ak áno, máte právo získať prístup k týmto údajom.
           </Typography>
         </li>
         <li>
-          <Typography paragraph>
-            Kontaktné údaje: emailová adresa, telefónne číslo.
+          <Typography variant="body1"  >
+            Právo na opravu – máte právo na opravu nepresných alebo neúplných osobných údajov.
           </Typography>
         </li>
         <li>
-          <Typography paragraph>
-            Profilové údaje: fotografia, osobný popis, záujmy.
+          <Typography variant="body1"  >
+            Právo na vymazanie – máte právo na vymazanie vašich osobných údajov, ak už nie sú potrebné na účely, na ktoré boli zhromaždené, alebo ak odvoláte svoj súhlas.
           </Typography>
         </li>
         <li>
-          <Typography paragraph>
-            Komunikačné údaje: správy a príspevky na platforme.
+          <Typography variant="body1"  >
+            Právo na obmedzenie spracovania – máte právo na obmedzenie spracovania vašich osobných údajov v určitých prípadoch.
           </Typography>
         </li>
         <li>
-          <Typography paragraph>
-            Technické údaje: IP adresa, súborové logy, cookies.
+          <Typography variant="body1"  >
+            Právo na prenosnosť údajov – máte právo získať vaše osobné údaje v štruktúrovanom, bežne používanom a strojovo čitateľnom formáte a preniesť ich inému prevádzkovateľovi.
+          </Typography>
+        </li>
+        <li>
+          <Typography variant="body1"  >
+            Právo namietať – máte právo namietať proti spracovaniu vašich osobných údajov na základe oprávneného záujmu.
           </Typography>
         </li>
       </Typography>
-      <Typography variant="h6" gutterBottom>
-        5. Účel spracovania osobných údajov
+      <Typography variant="h4" gutterBottom sx={{ my: 2 }}>
+        5. Kontakt
       </Typography>
-      <Typography paragraph>
-        Vaše osobné údaje spracúvame na nasledujúce účely:
-      </Typography>
-      <Typography component="ul">
-        <li>
-          <Typography paragraph>
-            Prevádzka sociálnej siete a poskytovanie jej funkcionalít.
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Personalizácia obsahu a zlepšovanie používateľského zážitku.
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Komunikácia so zákazníkmi a riešenie technických problémov.
-          </Typography>
-        </li>
-        <li>
-          <Typography paragraph>
-            Plnenie právnych povinností.
-          </Typography>
-        </li>
-      </Typography>
-      <Typography variant="h6" gutterBottom>
-      6. Prenos údajov tretím stranám
-
-      Vaše osobné údaje môžeme preniesť:
-
-      Poskytovateľom IT služieb a hostingových riešení.
-
-      Orgánom verejnej moci v súlade s právnymi predpismi.
-
-      Našim obchodným partnerom na základe Vášho súhlasu.
-
-      7. Vaše práva
-
-      Ako dotknutá osoba máte nasledujúce práva:
-
-      Právo na prístup: Požiadať o potvrdenie, či spracúvame Vaše údaje a získať k nim prístup.
-
-      Právo na opravu: Požiadať o opravu nesprávnych alebo neúplných údajov.
-
-      Právo na vymazanie: Požiadať o vymazanie Vašich údajov, ak už nie sú potrebné na účel spracovania.
-
-      Právo na obmedzenie spracúnia: Požiadať o obmedzenie spracovania v určitých prípadoch.
-
-      Právo na prenosnosť: Požiadať o prenesenie Vašich údajov inej organizácii.
-
-      Právo namietať: Namietať proti spracovaniu Vašich údajov na základe oprávneného záujmu.
-
-      Právo odvolať súhlas: Kedykoľvek odvolať svoj súhlas na spracovanie.
-
-      Svoje práva si môžete uplatniť kontaktovaním nás na [email alebo telefónne číslo].
-
-      8. Cookies
-
-      Používame cookies na zlepšenie našej služby. Viac informácií o cookies nájdete v [politike cookies].
-
-      9. Záverečné ustanovenia
-
-      Tieto podmienky nadobúdajú účinnosť dňom [dátum]. Vyhradzujeme si právo na ich zmenu. O významných zmenách Vás budeme informovať.
-
-      Ak máte akékoľvek otázky, kontaktujte nás na [email alebo telefónne číslo].
+      <Typography variant="body1"  >
+        Ak máte akékoľvek otázky alebo pripomienky týkajúce sa spracovania vašich osobných údajov, kontaktujte nás na emailovej adrese: support@zoskapp.sk.
       </Typography>
     </Box>
   

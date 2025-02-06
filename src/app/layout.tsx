@@ -4,7 +4,7 @@
 import "./globals.css";
 import Navbar from "@/components/NavBar";
 import AuthProvider from "../components/AuthProvider";
-import { Container, CssBaseline, ThemeProvider } from "@mui/material";
+import { Container, CssBaseline, ThemeProvider, Typography } from "@mui/material";
 import { darkTheme, lightTheme } from './theme'
 import { useEffect, useState } from "react";
 
@@ -44,6 +44,17 @@ export default function RootLayout({
             <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
               <main style={{ flexGrow: 1 }}>
                 <Container>
+                  <Typography
+                    variant="h1"
+                    sx={{  
+                      my: 2,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      position: 'absolute', 
+                    }}
+                  >
+                    Zoškapp
+                  </Typography>
                   {children}
                   <Navbar toggleTheme={toggleTheme} currentTheme={theme} />
                 </Container>

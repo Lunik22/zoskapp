@@ -16,19 +16,7 @@ export default async function Home() {
 
   if (session) {
     return(
-      <Stack spacing={2}>
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-        <AuthHome session={session} />
-      </Stack>
+      <AuthHome session={session} />
     );
   }
 

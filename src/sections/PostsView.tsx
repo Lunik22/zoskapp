@@ -53,19 +53,19 @@ const PostsView = () => {
   }, []);
 
   return (
-    <Container sx={{ mt: "2rem", mb: "6rem", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
+    <Container sx={{ pt: 12, mb: "6rem", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
       <Stack spacing={2} sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
         {posts.map((post) => (
           <Card key={post.id} sx={{ display: "flex", flexDirection: "column", borderRadius: 10, width: "60%", boxShadow: "none"}}>
             <CardContent sx={{ display: "flex", alignItems: "center", marginX: "2.5%"}}>
               <CardMedia 
-                component="img"
-                image={post.user.image || "/default-avatar.jpg"}
-                alt={post.user.name || "Neznámy používateľS"}
-                sx={{ height: "7.5%", width: "7.5%", borderRadius: "50%" }}
+              component="img"
+              image={post.user.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+              alt={post.user.name || "Neznámy používateľ"}
+              sx={{ height: "7.5%", width: "7.5%", borderRadius: "50%" }}
               />
               <Typography variant="h4" color="text.secondary" sx={{ marginLeft: "2.5%"}}>
-                  {post.user.name || "Neznámy používateľ"}
+                {post.user.name || "Neznámy používateľ"}
               </Typography>
             </CardContent>
             <CardMedia
