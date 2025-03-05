@@ -11,10 +11,15 @@ import Typography from "@mui/material/Typography";
 import Card from "@mui/material/Card";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
+import IconButton from "@mui/material/IconButton";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import ShareIcon from "@mui/icons-material/Share";
+import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 
 // Server action import
 import { fetchPosts } from "@/app/actions/posts";
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 
 // Post interface
 interface Post {
@@ -56,27 +61,49 @@ const PostsView = () => {
     <Container sx={{ pt: 12, mb: "6rem", display: "flex", justifyContent: "center", flexDirection: "column", alignItems: "center" }}>
       <Stack spacing={2} sx={{ width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
         {posts.map((post) => (
-          <Card key={post.id} sx={{ display: "flex", flexDirection: "column", borderRadius: 10, width: "60%", boxShadow: "none"}}>
-            <CardContent sx={{ display: "flex", alignItems: "center", marginX: "2.5%"}}>
+          <Card key={post.id} sx={{ display: "flex", flexDirection: "column", borderRadius: 5, width: "60%", boxShadow: 3, mb: 4 }}>
+            <CardContent sx={{ display: "flex", alignItems: "center", padding: 3 }}>
               <CardMedia 
-              component="img"
-              image={post.user.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
-              alt={post.user.name || "Neznámy používateľ"}
-              sx={{ height: "7.5%", width: "7.5%", borderRadius: "50%" }}
+                component="img"
+                image={post.user.image || "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"}
+                alt={post.user.name || "Neznámy používateľ"}
+                sx={{ height: 40, width: 40, borderRadius: "50%", marginRight: 2 }}
               />
-              <Typography variant="h4" color="text.secondary" sx={{ marginLeft: "2.5%"}}>
-                {post.user.name || "Neznámy používateľ"}
-              </Typography>
+              <Box sx={{ display: "flex", flexDirection: "column" }}>
+                <Typography variant="h6" color="text.primary">
+                  {post.user.name || "Neznámy používateľ"}
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  {formatDate(new Date(post.createdAt)) || "Bez datumu"}
+                </Typography>
+              </Box>
             </CardContent>
             <CardMedia
               component="img"
               image={post.imageUrl}
               alt={post.caption || "Príspevok bez popisu"}
-              sx={{ height: "80%" , width: "100%"}}
+              sx={{ width: "100%", maxHeight: 500, objectFit: "cover" }}
             />
-            <CardContent sx={{ display: "flex", flexDirection: "column", marginX: "2.5%"}}>
-              <Typography variant="body1">{post.caption || "Bez popisu"}</Typography>
-              <Typography variant="body1">{formatDate(new Date(post.createdAt)) || "Bez datumu"}</Typography>
+            <CardContent sx={{ padding: 4 }}>
+              <Typography variant="body1" color="text.primary" sx={{ marginBottom: 1 }}>
+                {post.caption || "Bez popisu"}
+              </Typography>
+            </CardContent>
+            <CardContent sx={{ display: "flex", justifyContent: "space-between", padding: 3 }}>
+              <div>
+                <IconButton>
+                  <FavoriteBorderIcon />
+                </IconButton>
+                <IconButton>
+                  <ChatBubbleOutlineIcon />
+                </IconButton>
+                <IconButton>
+                  <ShareIcon />
+                </IconButton>
+              </div>
+              <IconButton>
+                <BookmarkBorderIcon />
+              </IconButton>
             </CardContent>
           </Card>
         ))}

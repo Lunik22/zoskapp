@@ -3,7 +3,7 @@
 "use client";
 
 import * as React from "react";
-import { BottomNavigation, BottomNavigationAction, Box, Avatar, useTheme, Theme } from "@mui/material";
+import { BottomNavigation, BottomNavigationAction, Box, Avatar, useTheme, Theme, Popover, List, ListItemText, ListItemIcon, Button } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import AppsIcon from "@mui/icons-material/Apps";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
@@ -13,6 +13,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeIcon from "@mui/icons-material/DarkMode";
 import InfoIcon from '@mui/icons-material/Info';
+import SearchIcon from '@mui/icons-material/Search';
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 
@@ -32,14 +33,21 @@ function hexToRgb(hex: string) {
 
 export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
   const [value, setValue] = React.useState('/');
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const router = useRouter();
   const { data: session, status } = useSession();
-
-  
 
   const handleNavigation = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
     router.push(newValue);
+  };
+
+  const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
   };
 
   const theme = useTheme();
@@ -57,18 +65,19 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
     { label: "Domov", value: "/", icon: <HomeIcon /> },
     { label: "Príspevky", value: "/prispevky", icon: <AppsIcon /> },
     { label: "Pridať", value: "/pridat", icon: <AddCircleIcon /> },
+    { label: "Hľadať", value: "/hladanie", icon: <SearchIcon /> },
     {
-      value: "/profil",
+      value: "",
       icon: session?.user?.image ? (
         <Avatar 
           alt={session?.user?.name || "User"} 
           src={session?.user?.image || undefined} 
+          onClick={handlePopoverOpen}
         />
       ) : (
-        <Avatar>{session?.user?.name?.charAt(0) || "U"}</Avatar>
+        <Avatar onClick={handlePopoverOpen}>{session?.user?.name?.charAt(0) || "U"}</Avatar>
       )
     },
-    { label: "Odhlásiť", value: "/auth/odhlasenie", icon: <LogoutIcon /> },
   ];
 
   // Decide which paths to use based on authentication status
@@ -116,7 +125,6 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
             '&::-webkit-scrollbar': {
               display: 'none', // For Chrome, Safari, and Opera
             },
-            
           }}
         >
           {navigationPaths.map((path) => (
@@ -149,6 +157,48 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
           />
         </BottomNavigation>
       </Box>
+
+      <Popover
+        open={Boolean(anchorEl)}
+        anchorEl={anchorEl}
+        onClose={handlePopoverClose}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        sx={{
+          '& .MuiPaper-root': {
+            borderRadius: '25px',
+            backdropFilter: 'blur(10px)',
+            backgroundColor: `rgba(${navBarBackColorRgb}, 0.7)`,
+            padding: 1,
+          },
+          
+        }}
+      >
+        <List sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+        }}>
+          <Button onClick={() => router.push(`/profil`)} sx={{ color: theme.palette.text.primary }}>
+            <ListItemIcon>
+              <Avatar alt={session?.user?.name || "User"} src={session?.user?.image || undefined} />
+            </ListItemIcon>
+            <ListItemText primary="Môj profil" />
+          </Button>
+          <Button onClick={() => router.push("/auth/odhlasenie")} sx={{ color: theme.palette.error.main }}>
+            <ListItemIcon>
+              <LogoutIcon />
+            </ListItemIcon>
+            <ListItemText primary="Odhlásiť" />
+          </Button>
+        </List>
+      </Popover>
     </Box>
   );
 }
