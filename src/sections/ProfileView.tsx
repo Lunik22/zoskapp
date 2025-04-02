@@ -29,7 +29,7 @@ interface User extends FetchedUser {
 interface Post {
   id: string;
   userId: string;
-  imageUrl: string;
+  imageUrl?: string; // Made optional to handle missing property
   caption?: string | null;
 }
 
@@ -51,7 +51,10 @@ const ProfileView = () => {
 
       const loadPosts = async () => {
         try {
-          const fetchedPosts: Post[] = await fetchPostsByUserId(id as string);
+          const fetchedPosts: Post[] = (await fetchPostsByUserId(id as string)).map(post => ({
+            ...post,
+            imageUrl: post.imageUrl || "https://via.placeholder.com/150", // Provide a default image URL
+          }));
           setPosts(fetchedPosts);
         } catch (error) {
           console.error("Failed to fetch posts:", error);

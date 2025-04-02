@@ -47,7 +47,18 @@ const PostsView = () => {
   useEffect(() => {
     const loadPosts = async () => {
       try {
-        const fetchedPosts: Post[] = await fetchPosts();
+        const fetchedPosts: Post[] = (await fetchPosts()).map(post => ({
+          id: post.id,
+          userId: post.user.id,
+          imageUrl: post.imageUrl || "", // Provide a default value if missing
+          caption: post.caption,
+          createdAt: new Date(post.createdAt),
+          updatedAt: new Date(post.updatedAt),
+          user: {
+            image: post.user.image,
+            name: post.user.name,
+          },
+        }));
         setPosts(fetchedPosts);
       } catch (error) {
         console.error("Failed to fetch posts:", error);
@@ -80,15 +91,10 @@ const PostsView = () => {
             </CardContent>
             <CardMedia
               component="img"
-              image={post.imageUrl}
+              image={post.imageUrl || "https://via.placeholder.com/500"}
               alt={post.caption || "Príspevok bez popisu"}
               sx={{ width: "100%", maxHeight: 500, objectFit: "cover" }}
             />
-            <CardContent sx={{ padding: 4 }}>
-              <Typography variant="body1" color="text.primary" sx={{ marginBottom: 1 }}>
-                {post.caption || "Bez popisu"}
-              </Typography>
-            </CardContent>
             <CardContent sx={{ display: "flex", justifyContent: "space-between", padding: 3 }}>
               <div>
                 <IconButton>
@@ -105,6 +111,12 @@ const PostsView = () => {
                 <BookmarkBorderIcon />
               </IconButton>
             </CardContent>
+            <CardContent sx={{ padding: 4 }}>
+              <Typography variant="body1" color="text.primary" sx={{ marginBottom: 1 }}>
+                {post.caption || "Bez popisu"}
+              </Typography>
+            </CardContent>
+            
           </Card>
         ))}
       </Stack>

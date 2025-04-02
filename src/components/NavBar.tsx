@@ -185,7 +185,13 @@ export default function Navbar({ toggleTheme, currentTheme }: NavbarProps) {
           flexDirection: 'column',
           alignItems: 'center',
         }}>
-          <Button onClick={() => router.push(`/profil`)} sx={{ color: theme.palette.text.primary }}>
+          <Button 
+            onClick={() => {
+              router.push(`/profil/cm7vqqcbe00001ip35lu5ygip`);
+              handlePopoverClose();
+            }} 
+            sx={{ color: theme.palette.text.primary }}
+          >
             <ListItemIcon>
               <Avatar alt={session?.user?.name || "User"} src={session?.user?.image || undefined} />
             </ListItemIcon>
