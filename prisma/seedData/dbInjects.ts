@@ -8,7 +8,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function seed() {
-  const seedData = JSON.parse(fs.readFileSync('prisma/seedData/seed-data.json', 'utf8'));
+  const seedData = JSON.parse(fs.readFileSync('./seed-data.json', 'utf8'));
   const users = seedData.users || [];
   const follows = seedData.follows || [];
   const likes = seedData.likes || [];

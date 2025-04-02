@@ -16,7 +16,7 @@ import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
 // Server action import
-import { fetchUserById, User as FetchedUser } from "@/app/actions/users";
+import { fetchUserById, User as FetchedUser } from "@/app/actions/profiles";
 import { fetchPostsByUserId } from "@/app/actions/posts";
 
 // User and Post interfaces

@@ -14,7 +14,7 @@ import CardContent from "@mui/material/CardContent";
 import { Stack } from "@mui/material";
 
 // Server action import
-import { fetchUsers, User as FetchedUser } from "@/app/actions/users";
+import { fetchUsers, User as FetchedUser } from "@/app/actions/profiles";
 
 // User interface
 interface User extends FetchedUser {
